@@ -35,14 +35,6 @@ public class MagicSquareService {
         magicSquare.get(2).set(1, supportSquare.get(2));
         magicSquare.get(2).set(2, supportSquare.get(7));
 
-        for(int i = 0; i < initialSquare.size(); ++ i){
-            for(int j = 0; j < initialSquare.get(i).size(); ++j){
-                diff1 += Math.abs(initialSquare.get(i).get(j) - magicSquare.get(i).get(j));
-                diff2 += Math.abs(initialSquare.get(i).get(j) - magicSquare.get(initialSquare.size() - j - 1).get(i));
-                diff3 += Math.abs(initialSquare.get(i).get(j) - magicSquare.get(initialSquare.size() - i - 1).get(initialSquare.size() - j - 1));
-                diff4 += Math.abs(initialSquare.get(i).get(j) - magicSquare.get(j).get(initialSquare.size() - i - 1));
-            }
-        }
         List<List<Integer>> copyMagicSquare = new ArrayList<>();
         for(int i = 0; i < magicSquare.size(); ++i){
             copyMagicSquare.add(new LinkedList<>());
@@ -50,8 +42,16 @@ public class MagicSquareService {
                 copyMagicSquare.get(i).add(magicSquare.get(i).get(j).intValue() + mean);
             }
         }
+        for(int i = 0; i < initialSquare.size(); ++ i){
+            for(int j = 0; j < initialSquare.get(i).size(); ++j){
+                diff1 += Math.abs(initialSquare.get(i).get(j) - copyMagicSquare.get(i).get(j));
+                diff2 += Math.abs(initialSquare.get(i).get(j) - copyMagicSquare.get(initialSquare.size() - j - 1).get(i));
+                diff3 += Math.abs(initialSquare.get(i).get(j) - copyMagicSquare.get(initialSquare.size() - i - 1).get(initialSquare.size() - j - 1));
+                diff4 += Math.abs(initialSquare.get(i).get(j) - copyMagicSquare.get(j).get(initialSquare.size() - i - 1));
+            }
+        }
         if(diff1 <= diff2 && diff1 <= diff3 && diff1 <= diff4){
-            magicSquare.add(new LinkedList<>(Arrays.asList(diff1 - mean * 9)));
+            magicSquare.add(new LinkedList<>(Arrays.asList(diff1)));
             return magicSquare;
         }else if(diff2 <= diff1 && diff2 <= diff3 && diff2 <= diff4){
             for(int i = 0; i < magicSquare.size(); ++i){
@@ -59,23 +59,23 @@ public class MagicSquareService {
                     magicSquare.get(i).set(j, copyMagicSquare.get(magicSquare.size() - j - 1).get(i));
                 }
             }
-            magicSquare.add(new LinkedList<>(Arrays.asList(diff2 - mean * 9)));
+            magicSquare.add(new LinkedList<>(Arrays.asList(diff2)));
             return magicSquare;
         } else if (diff3 <= diff1 && diff3 <= diff2 && diff3 <= diff4) {
-            for(int i = 0; i < magicSquare.size(); ++i){
-                for(int j = 0; j < magicSquare.get(i).size(); ++j){
-                    magicSquare.get(i).set(j, copyMagicSquare.get(j).get(magicSquare.size() - i - 1));
-                }
-            }
-            magicSquare.add(new LinkedList<>(Arrays.asList(diff3 - mean * 9)));
-            return magicSquare;
-        }else{
             for(int i = 0; i < magicSquare.size(); ++i){
                 for(int j = 0; j < magicSquare.get(i).size(); ++j){
                     magicSquare.get(i).set(j, copyMagicSquare.get(magicSquare.size() - i - 1).get(magicSquare.size() - j - 1));
                 }
             }
-            magicSquare.add(new LinkedList<>(Arrays.asList(diff4 - mean * 9)));
+            magicSquare.add(new LinkedList<>(Arrays.asList(diff3)));
+            return magicSquare;
+        }else{
+            for(int i = 0; i < magicSquare.size(); ++i){
+                for(int j = 0; j < magicSquare.get(i).size(); ++j){
+                    magicSquare.get(i).set(j, copyMagicSquare.get(j).get(magicSquare.size() - i - 1));
+                }
+            }
+            magicSquare.add(new LinkedList<>(Arrays.asList(diff4)));
             return magicSquare;
         }
     }
