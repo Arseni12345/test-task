@@ -29,7 +29,9 @@ public class SubstringService {
                 }
             }
         }
-        substringDataBaseRepo.save(new SubstringDataBase(processString(resultSubstrings), processString(substrings), processString(sourceStrings)));
+        if(!resultSubstrings.isEmpty()) {
+            substringDataBaseRepo.save(new SubstringDataBase(processString(resultSubstrings), processString(substrings), processString(sourceStrings)));
+        }
         return resultSubstrings;
     }
 
