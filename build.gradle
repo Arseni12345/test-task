@@ -17,7 +17,7 @@ configurations {
 }
 
 application {
-    mainClass = ' com.example.test_tasks.TestTasksApplication'
+    mainClass = 'com.example.test_tasks.TestTasksApplication'
 }
 
 repositories {
