@@ -15,6 +15,10 @@ configurations {
 	}
 }
 
+vaadin{
+    productionMode = true
+}
+
 repositories {
 	mavenCentral()
 }
