@@ -16,8 +16,8 @@ public class SubstringDataBase {
 
     @Id
     @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @SequenceGenerator(name = "user_id_seq", sequenceName = "user_id_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="id_seq")
+    @SequenceGenerator(name = "id_seq", sequenceName = "id_seq")
     private long id;
 
     @Column(name = "substrings")
