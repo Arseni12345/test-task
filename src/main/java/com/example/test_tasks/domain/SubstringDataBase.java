@@ -15,8 +15,8 @@ import javax.persistence.*;
 public class SubstringDataBase {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @SequenceGenerator(name = "substring_data_base_pkey", sequenceName = "substring_data_base_pkey")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="my_seq")
+    @SequenceGenerator(name="my_seq",sequenceName="MY_SEQ", allocationSize=1)
     private long id;
 
     @Column(name = "substrings")
