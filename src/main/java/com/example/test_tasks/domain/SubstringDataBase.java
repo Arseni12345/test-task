@@ -15,15 +15,19 @@ import javax.persistence.*;
 public class SubstringDataBase {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @Column(name = "substrings")
     @NonNull
     private String substrings;
 
+    @Column(name = "source strings")
     @NonNull
     private String sourceStrings;
 
+    @Column(name = "result")
     @NonNull
     private String result;
 }
