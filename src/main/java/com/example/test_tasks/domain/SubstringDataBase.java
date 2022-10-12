@@ -23,7 +23,7 @@ public class SubstringDataBase {
     @NonNull
     private String substrings;
 
-    @Column(name = "source strings")
+    @Column(name = "source_strings")
     @NonNull
     private String sourceStrings;
 
