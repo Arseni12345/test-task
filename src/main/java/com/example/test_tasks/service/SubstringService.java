@@ -38,6 +38,7 @@ public class SubstringService {
         StringBuilder stringBuilder = new StringBuilder();
         for(String s: list){
             stringBuilder.append(s);
+            stringBuilder.append(" ");
         }
         return stringBuilder.toString();
     }
